@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+#define tam 2
+
+struct dados_aluno
+{
+    char nome[200];
+    char data[200];
+    int nota[2];
+    float media;
+};
+
+float calcularmedia(int nota[])
+{
+
+    int j;
+    float somanota = 0, media;
+
+    for (j = 0; j < 2; j++)
+    {
+        somanota += nota[j];
+    }
+
+    media = somanota / tam;
+
+    return media;
+}
+
+int main()
+{
+    struct dados_aluno aluno[2];
+    int i, j;
+    for (i = 0; i < 2; i++)
+    {
+        printf("digite o nome do aluno:");
+        gets(aluno[i].nome);
+        printf("data de nascimento:");
+        gets(aluno[i].data);
+
+        for (j = 0; j < tam; j++)
+        {
+            printf("digite %d nota ", j + 1);
+            scanf("%d", &aluno[i].nota[j]);
+        }
+
+        aluno[i].media = calcularmedia(aluno[i].nota);
+
+        printf("media: %.2f\n", aluno[i].media);
+        fflush(stdin);
+    }
+}
